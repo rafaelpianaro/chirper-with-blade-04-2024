@@ -23,7 +23,7 @@
                                 <small class="ml-2 text-sm text-gray-600 dark:text-gray-100"">{{ $chirp->created_at->diffForHumans() }}</small>
                                 {{-- <small class="ml-2 text-sm text-gray-600">{{ $chirp->created_at->format('j M Y, g:i a') }}</small> --}}
                                 @unless ($chirp->created_at->eq($chirp->updated_at))
-                                    <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                                    <small class="text-sm text-gray-60 dark:text-gray-100"> &middot; {{ __('edited') }}</small>
                                 @endunless
                             </div>
                             @if ($chirp->user->is(auth()->user()))
