@@ -43,7 +43,7 @@ class ChirpController extends Controller
         $validated = $request->validated();
         $request->user()->chirps()->create($validated);
  
-        return redirect(route('chirps.index'));
+        return redirect(route('chirps.index'))->with('success','Chirp Created.');
     }
 
     /**
@@ -82,7 +82,7 @@ class ChirpController extends Controller
         // update the chirp
         $chirp->update($validated);
         
-        return redirect(route('chirps.index'));
+        return redirect(route('chirps.index'))->with('success','Chirp Updated.');
     }
 
     /**
@@ -93,6 +93,6 @@ class ChirpController extends Controller
         Gate::authorize('delete', $chirp);
         $chirp->delete();
  
-        return redirect(route('chirps.index'));
+        return redirect(route('chirps.index'))->with('success', 'Chirp Deleted.');
     }
 }

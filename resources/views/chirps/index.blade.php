@@ -1,5 +1,23 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        @if (session('success'))
+            <div x-data="{ isOpen: true }" x-show="isOpen" x-cloak x-transition.opacity.out.duration.300ms.in.duration.300ms
+                class="bg-green-100 border-l-4 border-green-500 text-green-700 px-4 py-3 rounded-lg shadow-md mb-8 relative" role="alert">
+                <div class="flex items-center">
+                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <strong class="font-bold">{{ __('Success!') }}</strong>
+                    <span class="block sm:inline ml-2">{{ session('success') }}</span>
+                </div>
+                <button @click="isOpen = false" class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <title>Close</title>
+                        <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.846 7.349 14.849a1.2 1.2 0 1 1-1.697-1.697l2.651-3.001-2.651-3.001a1.2 1.2 0 1 1 1.697-1.697L10 8.148l2.651-3.001a1.2 1.2 0 1 1 1.697 1.697L11.697 10l2.651 3.001a1.2 1.2 0 0 1 0 1.848z"/>
+                    </svg>
+                </button>
+            </div>
+        @endif
         <form method="POST" action="{{ route('chirps.store') }}">
             @csrf
             <textarea
