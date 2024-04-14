@@ -2,11 +2,28 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    {{-- @section('error')
+    @endsection --}}
+
+    <!-- Error Message -->
+    @if (session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Ops!</strong>
+            <span class="block sm:inline">{{ session('error') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.parentElement.parentElement.remove();">
+                    <title>Fechar</title>
+                    <path d="M14.348 14.849a1.2 1.2 0 1 1-1.697 1.697L10 12.697l-2.651 2.849a1.2 1.2 0 1 1-1.697-1.697L8.303 11l-2.651-2.651a1.2 1.2 0 1 1 1.697-1.697L10 9.303l2.651-2.651a1.2 1.2 0 1 1 1.697 1.697L11.697 11l2.651 2.651z"/>
+                </svg>
+            </span>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
-        <div>
+        <div class="pt-3">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
