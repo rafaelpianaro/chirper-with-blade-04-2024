@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $casts = [
+        'banned_at' => 'datetime',  // Usando casting
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'banned_at',
     ];
 
     /**
@@ -49,5 +54,10 @@ class User extends Authenticatable
     public function chirps() : HasMany
     {
         return $this->hasMany(Chirp::class);
+    }
+
+    public function isBanned()
+    {
+        return $this->banned_at !== null && now() < $this->banned_at;
     }
 }

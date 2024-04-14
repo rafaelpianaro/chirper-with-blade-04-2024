@@ -26,6 +26,14 @@ Route::get('/users', [AdminController::class, 'index'])
     ->name('admin.show.users')
     ->middleware(['auth', 'is_admin']);
 
+Route::put('/users/{user}/block', [AdminController::class, 'block'])
+    ->name('users.block')
+    ->middleware(['auth', 'is_admin']);
+
+Route::put('/users/{user}/unblock', [AdminController::class, 'unblock'])
+    ->name('users.unblock')
+    ->middleware(['auth', 'is_admin']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
