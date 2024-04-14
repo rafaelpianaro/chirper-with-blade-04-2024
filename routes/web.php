@@ -20,7 +20,7 @@ Route::resource('chirps', ChirpController::class)
 // Admin routes
 Route::get('/users', [AdminController::class, 'index'])
     ->name('admin.show.users')
-    ->middleware('auth');
+    ->middleware(['auth', 'isAdmin']);
 
 
 Route::middleware('auth')->group(function () {
