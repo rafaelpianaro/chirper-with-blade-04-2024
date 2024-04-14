@@ -15,9 +15,10 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! auth()->user()->is_admin) {
-            abort(403);
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            abort(403, 'Access Denied. You are not authorized to access this page.');
         }
+        // Se o usuário é um administrador, permite que a requisição continue
         return $next($request);
     }
 }

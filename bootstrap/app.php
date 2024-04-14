@@ -14,8 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'isAdmin ' => IsAdminMiddleware::class,
-            'isBanned' => CheckBanned::class,
+            'is_admin' => IsAdminMiddleware::class,
+            'is_banned' => CheckBanned::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
